@@ -51,8 +51,7 @@ app[:mysql_analytics_host] = ca_mysql_server_ip
 app[:mysql_analytics_port] = 3306
 
 # Use Memcached locally (it's running on the same servers as the app servers)
-app[:memcached_host] = '127.0.0.1'
-app[:memcached_port] = 11211
+app[:memcached_servers] = ['127.0.0.1:11211']
 
 # Look for the app and graphics locally as well
 proxy[:app_upstreams] = ['127.0.0.1:6000']
