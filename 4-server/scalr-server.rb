@@ -11,14 +11,14 @@ enable_all false
 # Topology Configuration #
 ##########################
 
-# You can use the IP as well, but it's strongly recommended to use a DNS Name you control.
-app_server_hostname = '????'
+# You can use IPs for the below as well, but hostnames are preferable.
+app_server_host = '????'  # This MUST be reachable by your instances.
+main_mysql_server_host = '???'
+ca_mysql_server_host = '???'
 
-# Server IPs
+# Server IPs. Those MUST be IPs, not hostnames.
 app_server_ip = '???'
 worker_server_ip = '???'
-main_mysql_server_ip = '???'
-ca_mysql_server_ip = '???'
 
 
 ####################
@@ -26,7 +26,7 @@ ca_mysql_server_ip = '???'
 ####################
 
 proto = 'http'  # Set up the SSL settings and this to 'https' to use HTTPS
-endpoint = app_server_hostname
+endpoint = app_server_host
 
 routing[:endpoint_scheme] = proto
 routing[:endpoint_host] = endpoint
@@ -44,10 +44,10 @@ routing[:plotter_port] = if proto == 'http' then 80 else 443 end
 ####################
 
 # Use separate hosts for MySQL
-app[:mysql_scalr_host] = main_mysql_server_ip
+app[:mysql_scalr_host] = main_mysql_server_host
 app[:mysql_scalr_port] = 3306
 
-app[:mysql_analytics_host] = ca_mysql_server_ip
+app[:mysql_analytics_host] = ca_mysql_server_host
 app[:mysql_analytics_port] = 3306
 
 # Use Memcached locally (it's running on the same servers as the app servers)
@@ -84,6 +84,6 @@ memcached[:bind_port] = 11211
 # App configuration #
 #####################
 
-app[:ip_ranges] = [worker_server_ip , app_server_ip]
+app[:ip_ranges] = [app_server_ip, worker_server_ip,]
 app[:instances_connection_policy] = 'local'  # Or 'public'
 app[:configuration] = {}  # Add extra configuration here
