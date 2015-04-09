@@ -31,13 +31,6 @@ endpoint = app_server_host
 routing[:endpoint_scheme] = proto
 routing[:endpoint_host] = endpoint
 
-routing[:graphics_scheme] = proto
-routing[:graphics_host] = endpoint
-
-routing[:plotter_scheme] = proto
-routing[:plotter_host] = endpoint
-routing[:plotter_port] = if proto == 'http' then 80 else 443 end
-
 
 ####################
 # Internal Routing #
