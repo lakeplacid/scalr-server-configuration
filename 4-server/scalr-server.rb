@@ -77,6 +77,6 @@ memcached[:bind_port] = 11211
 # App configuration #
 #####################
 
-app[:ip_ranges] = [app_server_ip, worker_server_ip,]
+app[:ip_ranges] = ["#{app_server_ip}/32", "#{worker_server_ip}/32",]
 app[:instances_connection_policy] = 'local'  # Or 'public'
 app[:configuration] = {}  # Add extra configuration here
