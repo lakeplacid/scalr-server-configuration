@@ -33,3 +33,8 @@ app[:configuration] = {
     }
   }
 }
+
+# This will be injected into your ldap.conf
+app[:ldap_configuration] = '
+TLS_CACERT /etc/ssl/ca-cert.pem
+'
