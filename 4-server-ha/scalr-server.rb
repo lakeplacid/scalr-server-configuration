@@ -78,4 +78,3 @@ mysql[:bind_port] = 3306
 memcached[:bind_host] = '0.0.0.0'
 memcached[:bind_port] = 11211
 
-/opt/scalr-server/bin/kickstart-replication 52.53.248.7:3306 54.215.186.112:3306
