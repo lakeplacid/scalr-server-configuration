@@ -13,8 +13,8 @@ enable_all false
 
 # You can use IPs for the below as well, but hostnames are preferable.
 ENDPOINT = 'loadbalancer or hostname of endpoint'  # This MUST be reachable by your instances.
-MAIN_MYSQL_SERVER_HOST = 'main mysql server hostname'
-CA_MYSQL_SERVER_HOST = 'cost analytics hostname'
+MASTER_MYSQL_SERVER_HOST = 'master mysql server hostname'
+SLAVE_MYSQL_SERVER_HOST = 'slave mysql server hostname'
 SERVER_1 = 'scalr server1 hostname'
 SERVER_2 = 'scalr server2 hostname'
 MEMCACHED_PORT = "11211"
@@ -41,11 +41,12 @@ routing[:plotter_port] = if proto == 'http' then 80 else 443 end
 # Internal Routing #
 ####################
 
-# Use separate hosts for MySQL
-app[:mysql_scalr_host] = MAIN_MYSQL_SERVER_HOST
+## In the event of a failover event, change this to SLAVE_MYSQL_SERVER_HOST
+app[:mysql_scalr_host] = MASTER_MYSQL_SERVER_HOST
 app[:mysql_scalr_port] = 3306
 
-app[:mysql_analytics_host] = CA_MYSQL_SERVER_HOST
+## In the event of a failover event, change this to SLAVE_MYSQL_SERVER_HOST
+app[:mysql_analytics_host] = MASTER_MYSQL_SERVER_HOST
 app[:mysql_analytics_port] = 3306
 
 # Memcached Servers
@@ -77,4 +78,3 @@ mysql[:bind_port] = 3306
 
 memcached[:bind_host] = '0.0.0.0'
 memcached[:bind_port] = 11211
-

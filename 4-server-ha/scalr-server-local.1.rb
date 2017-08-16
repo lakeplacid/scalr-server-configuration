@@ -8,9 +8,9 @@ memcached[:enable] = true
 web[:enable] = true
 
 # Load Statistics (Graphics is already enabled as part of Web)
-rrd[:enable] = true
+rrd[:enable] = false
 
-#Disbale worker component, only one can be on at a time##
+#Disable worker component, only one can be on at a time##
 service[:enable] = false
 
 #Cron
