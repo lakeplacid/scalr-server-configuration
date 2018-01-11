@@ -56,8 +56,8 @@ memcached[:enable_sasl] = false
 
 # Look for the app and graphics locally as well
 proxy[:app_upstreams] = ['127.0.0.1:6000']
-proxy[:graphics_upstreams] = ['127.0.0.1:6100']
-proxy[:plotter_upstreams]  = ['127.0.0.1:6200']
+proxy[:graphics_upstreams] = [SERVER_2 + ':6100']
+proxy[:plotter_upstreams]  = [SERVER_2 + ':6200']
 
 # Bind the proxy publicly
 proxy[:bind_host] = '0.0.0.0'
@@ -66,10 +66,10 @@ proxy[:bind_host] = '0.0.0.0'
 web[:app_bind_host] = '127.0.0.1'
 web[:app_bind_port] = 6000
 
-web[:graphics_bind_host] = '127.0.0.1'
+web[:graphics_bind_host] = '0.0.0.0'
 web[:graphics_bind_port] = 6100
 
-service[:plotter_bind_host] = '127.0.0.1'
+service[:plotter_bind_host] = '0.0.0.0'
 service[:plotter_bind_port] = 6200
 
 # Bind MySQL publicly, because it'll need to be accessed by the app & worker
