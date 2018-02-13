@@ -1,0 +1,3 @@
+rabbitmq[:enable] = true
+
+influxdb[:enable] = true
