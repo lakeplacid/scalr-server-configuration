@@ -77,7 +77,7 @@ memcached[:bind_port] = 11211
 app[:influxdb_host] = INFLUXDB_SERVER
 influxdb[:http_bind_host] = '0.0.0.0'
 proxy[:amqps_bind_port] = 5671
-app[:rabbitmq_host] = INFLUXDB_SERVER
+app[:rabbitmq_host] = WORKER_SERVER
 rabbitmq[:bind_host] = '0.0.0.0'
 rabbitmq[:mgmt_bind_host] = '0.0.0.0'
 
