@@ -1,0 +1,8 @@
+#Enable worker component, only one can be on at a time#
+service[:enable] = true
+
+rabbitmq[:enable] = true
+
+influxdb[:enable] = true
+
+service[:enable_beta] = ["beat", "monitor", "workflow-engine"]
