@@ -80,7 +80,7 @@ proxy[:amqps_bind_port] = 5671
 app[:rabbitmq_host] = WORKER_SERVER
 rabbitmq[:bind_host] = '0.0.0.0'
 rabbitmq[:mgmt_bind_host] = '0.0.0.0'
-proxy[:rabbitmq_upstreams] = WORKER_SERVER
+proxy[:rabbitmq_upstreams] = [WORKER_SERVER]
 
 app[:configuration] = {
   :scalr => {
