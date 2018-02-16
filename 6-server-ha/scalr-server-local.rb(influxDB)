@@ -1,2 +1,2 @@
-#Enable RabbitMQ and InfluxDB
+#Enable InfluxDB
 influxdb[:enable] = true
