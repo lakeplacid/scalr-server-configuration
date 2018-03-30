@@ -7,13 +7,13 @@
 # Topology Configuration #
 ##########################
 # You can use IPs for the below as well, but hostnames are preferable.
-ENDPOINT = 'loadbalancer or hostname of endpoint'
-MASTER_MYSQL_SERVER_HOST = 'master mysql server hostname'
-SLAVE_MYSQL_SERVER_HOST = 'slave mysql server hostname'
-APP_SERVER_1 = 'Enter App Server 1 Here'
-APP_SERVER_2 = 'Enter App Server 2 Here'
-WORKER_SERVER = 'Enter Worker Server Here'
-INFLUXDB_SERVER = 'Enter InfluxDB Server Here'
+ENDPOINT = 'Enter Loadbalancer or Hostname of Endpoint Here'
+MASTER_MYSQL_SERVER_HOST = 'Enter Master MySQL Server Hostname Here'
+SLAVE_MYSQL_SERVER_HOST = 'Enter Slave MySQL Server Hostname Here'
+APP_SERVER_1 = 'Enter App/Proxy Server 1 Hostname Here'
+APP_SERVER_2 = 'Enter App/Proxy Server 2 Hostname Here'
+WORKER_SERVER = 'Enter Worker Server Hostname Here'
+INFLUXDB_SERVER = 'Enter InfluxDB Server Hostname Here'
 MEMCACHED_PORT = "11211"
 
 ####################
