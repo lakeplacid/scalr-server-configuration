@@ -1,0 +1,179 @@
+enable_all false
+
+proto = 'https'
+endpoint = 'example.com'
+
+routing[:endpoint_scheme] = proto
+routing[:endpoint_host] = endpoint
+
+routing[:graphics_scheme] = proto
+routing[:graphics_host] = endpoint
+
+routing[:plotter_scheme] = proto
+routing[:plotter_host] = endpoint
+routing[:plotter_port] = (proto == 'http' ? 80 : 443)
+
+app[:mysql_scalr_host] = 'x.x.x.x'
+app[:mysql_scalr_port] = 3306
+
+app[:mysql_analytics_host] = 'x.x.x.x'
+app[:mysql_analytics_port] = 3306
+
+app[:memcached_host] = '127.0.0.1'
+app[:memcached_port] = 11211
+
+app[:ip_ranges] = ['x.x.x.x', 'x.x.x.x', 'x.x.x.x']
+app[:instances_connection_policy] = 'local'
+app[:session_cookie_timeout] = 0
+app[:session_soft_timeout] = 2700
+app[:configuration] = {
+  :scalr => {
+    :scalarizr_update => {
+      mode: 'solo',
+      default_repo: 'stable',
+      repos: {
+        stable:               {
+          deb_repo_url: 'http://x.x.x.x/apt latest/',
+          rpm_repo_url: 'http://x.x.x.x/scalr/scalr-stable-x86_64/latest',
+          win_repo_url: 'http://x.x.x.x/latest/win/',
+          msi_repo_url: 'http://x.x.x.x/latest/win/'
+        },
+        latest: {
+          deb_repo_url: 'http://x.x.x.x/apt latest/',
+          rpm_repo_url: 'http://x.x.x.x/scalr/scalr-stable-x86_64/latest',
+          win_repo_url: 'http://x.x.x.x/latest/win/',
+          msi_repo_url: 'http://x.x.x.x/latest/win/'
+        }
+      }
+    },
+    'logger' => {
+      'audit' => {
+        'enabled' => true,
+        'proto' => 'http',
+        'path' => 'x.x.x.x',
+        'port' => 8080,
+        'tag' => 'audit'
+      },
+      'api' => {
+        'enabled' => true,
+        'proto' => 'http',
+        'path' => 'x.x.x.x',
+        'port' => 8080,
+        'tag' => 'api'
+      },
+      'user' => {
+        'enabled' => true,
+        'proto' => 'http',
+        'path' => 'x.x.x.x',
+        'port' => 8080,
+        'tag' => 'user'
+      }
+    },
+    'allowed_clouds' => %w(ec2 openstack cloudstack gce verizon azure vio),
+    'connections' => {
+      'proxy' =>
+        {
+          'host' => 'x.x.x.x',
+          'port' => 80,
+          'user' => '',
+          'pass' => '',
+          'type' => '0',
+          'use_on' => 'scalr'
+        },
+      'ldap' => {
+        'host' => '.x.x.x.x',
+        'port' => 389,
+        'base_dn' => 'ou=,o=scalr',
+        'base_dn_groups' => 'ou=,ou=,o=x.com',
+        'user' => '',
+        'pass' => '',
+        'domain' => 'scalr.com',
+        'group_displayname_attribute' => 'displayname',
+        'bind_type' => 'simple',
+        'debug' => true,
+        'group_nesting' => false,
+        'mail_attribute' => 'mail',
+        'username_attribute' => 'uid',
+        'fullname_attribute' => 'cn',
+        'groupname_attribute' => 'cn',
+        'group_member_attribute' => 'uniquemember',
+        'filter' =>
+                {
+                  'users' => '(&(objectClass=person))',
+                  'groups' => '(&(objectClass=groups))'
+                }
+      },
+      'saml' => {
+        'idp' => {
+          'entity_id' => 'x',
+          'single_sign_on_service' => { 'url' => 'example.com' },
+          'single_logout_service' => { 'url' => 'example.com' },
+          'cert_fingerprint' => '',
+          'cert_fingerprint_algorithm' => 'sha256',
+          'x509cert' => ""
+        },
+        'auto_redirect' => true,
+        'sp' => {
+          'name_id_format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified'
+        }
+      }
+    },
+    'auth_mode' => 'ldap',
+    'script' => {
+      'timeout' => {
+        'sync' => 300,
+        'async' => 300
+      }
+    },
+    'security' => {
+      'user' => {
+       'session' => {
+        'timeout' => '+120 minutes'
+      }
+     }
+    },
+    'system' => {
+      'instances_connection_timeout' => 8,
+      'scripting' => {
+      'default_instance_log_rotation_period' => 432000
+    },
+    'api' => {
+      'enabled' => true,
+      'allowed_origins' => '*'
+    }
+  },
+  'azure' => {
+    'use_proxy' => true
+  },
+  'aws' => {
+    'use_proxy' => true
+  }
+}
+}
+
+proxy[:app_upstreams] = ['127.0.0.1:6000']
+proxy[:graphics_upstreams] = ['x.x.x.x:6100']
+proxy[:plotter_upstreams]  = ['x.x.x.x:6200']
+
+proxy[:bind_host] = '0.0.0.0'
+
+proxy[:ssl_enable] = true
+proxy[:ssl_redirect] = true
+proxy[:ssl_cert_path] = '/ssl/abc'
+proxy[:ssl_key_path] = '/ssl/abc.key'
+
+web[:app_bind_host] = '127.0.0.1'
+web[:app_bind_port] = 6000
+
+web[:graphics_bind_host] = '0.0.0.0'
+web[:graphics_bind_port] = 6100
+
+service[:plotter_bind_host] = '0.0.0.0'
+service[:plotter_bind_port] = 6200
+
+mysql[:bind_host] = '0.0.0.0'
+mysql[:bind_port] = 3306
+mysql[:binlog] = true
+
+memcached[:bind_host] = '127.0.0.1'
+memcached[:bind_port] = 11211
