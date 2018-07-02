@@ -23,7 +23,6 @@ app[:memcached_host] = '127.0.0.1'
 app[:memcached_port] = 11211
 
 app[:ip_ranges] = ['x.x.x.x', 'x.x.x.x', 'x.x.x.x']
-app[:instances_connection_policy] = 'local'
 app[:session_cookie_timeout] = 0
 app[:session_soft_timeout] = 2700
 app[:configuration] = {
@@ -143,10 +142,11 @@ app[:configuration] = {
     }
   },
   'azure' => {
-    'use_proxy' => true
+    'use_proxy' => true,
   },
   'aws' => {
-    'use_proxy' => true
+    'use_proxy' => true,
+    'instances_connection_policy' => local
   }
 }
 }
