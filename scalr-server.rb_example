@@ -146,7 +146,7 @@ app[:configuration] = {
   },
   'ec2' => {
     'use_proxy' => true,
-    'instances_connection_policy' => local
+    'instances_connection_policy' => 'local'
   }
 }
 }
