@@ -68,7 +68,7 @@ app[:configuration] = {
         'tag' => 'user'
       }
     },
-    'allowed_clouds' => %w(ec2 openstack cloudstack gce verizon azure vio),
+    'allowed_clouds' => %w(ec2 openstack cloudstack gce azure),
     'connections' => {
       'proxy' =>
         {
