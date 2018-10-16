@@ -157,10 +157,10 @@ proxy[:plotter_upstreams]  = ['x.x.x.x:6200']
 
 proxy[:bind_host] = '0.0.0.0'
 
-proxy[:ssl_enable] = true
-proxy[:ssl_redirect] = true
-proxy[:ssl_cert_path] = '/ssl/abc'
-proxy[:ssl_key_path] = '/ssl/abc.key'
+proxy[:ssl_enable] = false                   # Whether to enable SSL on the proxy
+proxy[:ssl_redirect] = true                  # Whether the proxy should redirect HTTP requests to HTTPS (make sure you have a valid cert if you leave this to true!)
+proxy[:ssl_cert_path] = '/path/to/the/cert'  # Path to a SSL cert the proxy should use (this needs to be readable by the scalr-app user).
+proxy[:ssl_key_path] = '/path/to/the/key'    # Path to a corresponding SSL key the proxy should use (same as above).
 
 web[:app_bind_host] = '127.0.0.1'
 web[:app_bind_port] = 6000
